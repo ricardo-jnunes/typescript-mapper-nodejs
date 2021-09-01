@@ -1,6 +1,9 @@
 
 init();
-mapping();
+//mapping();
+//complexMapping();
+complexMappingAndTransform();
+
 function init() {
     
 }
@@ -26,6 +29,42 @@ function mapping() {
       }]
       
       const updated = data.map(({open: o, high: h, low: l, close: c, volume: v, closeTime: d}) => ({o, h, l, c, v, d}))
+      
+      console.log(updated)
+}
+
+function complexMapping() {
+
+    const data = [{
+        open: '122.31000000',
+        volume:[
+            { entry: 1, track:1},
+            { entry: 2, track:2}
+        ],
+        closeTime: 1585007999999,
+      }];
+      
+      const updated = data.map(({open: o, volume: v,  closeTime: d}) => ({o, v, d}))
+      
+      console.log(updated[0].v)
+}
+
+function complexMappingAndTransform() {
+
+    const data = [{
+        open: '122.31000000',
+        volume:[
+            { entry: 1, track:1},
+            { entry: 2, track:2}
+        ],
+        closeTime: 1585007999999,
+      }];
+      
+      const updated = data.map(({
+          open: o, 
+          volume: v,  
+          closeTime: d
+        }) => ({o, vol:v[0].entry, d}))
       
       console.log(updated)
 }
